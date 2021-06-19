@@ -1,10 +1,9 @@
-from ply.lex import TOKEN, Token
 import ply.lex as lex
 
 
 tokens = [
     'AND',
-    'ARROW', # @ replace => in arrow function
+    'ARROW',  # @ replace => in arrow function
     'ASSIGN',
     'ASIGSUM',
     'ASIGTIMES',
@@ -124,10 +123,12 @@ t_INT = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
 t_FLOAT = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
 t_STRING = r'(\"|\')([^\\\n]|(\\.))*?(\"|\')'
 
+
 def t_IDENT(t):
     r'[A-Za-z_][\w_]*'
     t.type = reserved_words.get(t.value, 'IDENT')
     return t
+
 
 """ @TOKEN(re_INT)
 def _INT(t):
@@ -139,17 +140,21 @@ def _FLOAT(t):
     t.value = float(t.value)
     return t """
 
+
 def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
+
 
 def t_error(t):
     print("Illegal character '%s'" % t.value)
     t.lexer.skip(1)
 
+
 def t_preprocessor(t):
     r'\#(.)*?\n'
     t.lexer.lineno += 1
+
 
 lexer = lex.lex()
 data = '''
