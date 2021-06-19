@@ -1,4 +1,4 @@
-from ply.lex import TOKEN
+from ply.lex import TOKEN, Token
 import ply.lex as lex
 import codecs
 import re
@@ -9,12 +9,11 @@ tokens = [
     'ASSIGN',
     'COMMA',
     'DIVISION',
-    'ELSE',
     'EQ',
     'EQ_V',
     'GT',
     'GTE',
-    'IDENT ',
+    'IDENT',
     'INT',
     'FLOAT',
     'LBRACE',
@@ -70,12 +69,10 @@ reserved_words = {
 
 tokens = tokens + list(reserved_words.values())
 
-t_ignore = '\t'
-
+t_ignore = ' \t'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
-t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_EQ_V = r'='
@@ -97,9 +94,13 @@ re_SIG = t_MINUS + r'?'
 re_INT = re_SIG + r'([0-9]|[1-9][0-9]+)'
 re_FLOAT = re_SIG + re_INT + r'.' + r'[0-0]+'
 
-def t_ID(t):
-    r'\w+'
-    t.type = reserved_words.get(t.value, 'ID')
+def start_end(regex):
+    #return r'^' + regex + r'$'
+    return regex
+
+@TOKEN(start_end(r'[a-zA-z_][a-zA-z0-9_]*'))
+def t_IDENT(t):
+    t.type = reserved_words.get(t.value, 'IDENT')
     return t
 
 @TOKEN(re_INT)
@@ -111,3 +112,26 @@ def t_INT(t):
 def t_FLOAT(t):
     t.value = float(t.value)
     return t
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_error(t):
+    print("Illegal character '%s'" % t.value[0])
+    t.lexer.skip(1)
+
+lexer = lex.lex()
+
+data = '''
+dynamic if 2var
+'''
+
+# Give the lexer some input
+lexer.input(data)
+
+while True:
+    tok = lexer.token()
+    if not tok: 
+        break      # No more input
+    print(tok)
