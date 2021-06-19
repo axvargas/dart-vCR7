@@ -1,3 +1,3 @@
-# dart-vCR7
+# Dart-vCR7
 
 ![](assets/siu.gif)
