@@ -2,6 +2,7 @@ import ply.lex as lex
 
 
 tokens = [
+    # Enmanuel Magannales
     'AND',
     'ARROW',  # @ replace => in arrow function
     'ASSIGN',
@@ -15,6 +16,7 @@ tokens = [
     'EQ',
     'EQ_V',
     'GT',
+    # Andres Vargas
     'GTE',
     'IDENT',
     'INT',
@@ -27,6 +29,7 @@ tokens = [
     'LTE',
     'NEGATION',
     'NE',
+    # Josue Cobos (Inicia)
     'MINUS',
     'MINUSMINUS',
     'OR',
@@ -42,6 +45,7 @@ tokens = [
 ]
 
 reserved_words = {
+    # Josue Cobos
     'abstract': 'ABSTRACT',
     'as': 'AS',
     'assert': 'ASSERT',
@@ -60,6 +64,7 @@ reserved_words = {
     'super': 'SUPER',
     'switch': 'SWITCH',
     'case': 'CASE',
+    # Andres Vargar
     'catch': 'CATCH',
     'class': 'CLASS',
     'const': 'CONST',
@@ -68,6 +73,7 @@ reserved_words = {
     'for': 'FOR',
     'function': 'FUNCTION',
     'if': 'IF',
+    # Enmanuel Magallanes
     'int': 'INT_TYPE',
     'return': 'RETURN',
     'var': 'VAR',
@@ -84,6 +90,7 @@ reserved_words = {
 
 tokens = tokens + list(reserved_words.values())
 
+# Andres Vargas
 t_ignore = ' \t\x0c'
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -95,6 +102,7 @@ t_COMMA = r','
 t_DIVISION = r'/'
 t_EQ = r'=='
 t_GT = r'>'
+# Josue Cobos
 t_GTE = r'>='
 t_LBRACE = r'{'
 t_RBRACE = r'}'
@@ -104,6 +112,7 @@ t_LT = r'<'
 t_LTE = r'<='
 t_NEGATION = r'!'
 t_NE = r'!='
+# Enmanuel Magallanes
 t_SEMICOLON = r';'
 t_ARROW = r'@'
 t_DDOTS = r':'
@@ -155,7 +164,7 @@ def t_preprocessor(t):
     r'\#(.)*?\n'
     t.lexer.lineno += 1
 
-
+# Josue Cobos
 lexer = lex.lex()
 data = '''
 int goals;
