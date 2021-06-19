@@ -192,7 +192,6 @@ muster >= 23;
 mustet++;
 --muster;
 muster--;
-%muster%;
 true && muster;
 true || muster;
 !true;
