@@ -1,39 +1,35 @@
+from ply.lex import TOKEN
 import ply.lex as lex
-import re
 import codecs
-import os
+import re
 import sys
+import os
 
 tokens = [
     'ASSIGN',
     'COMMA',
     'DIVISION',
     'ELSE',
-    'EOF ',
     'EQ',
-    'FALSE',
-    'FUNCTION',
+    'EQ_V',
     'GT',
-    'G_EQ_T',
+    'GTE',
     'IDENT ',
-    'IF',
-    'ILLEGAL',
     'INT',
+    'FLOAT',
     'LBRACE',
-    'LET ',
+    'RBRACE',
     'LT',
-    'L_EQ_T',
+    'LTE',
     'NEGATION',
-    'NOT_EQ',
+    'NE',
     'MINUS',
     'TIMES',
     'LPAREN',
     'PLUS',
-    'RBRACE',
-    'RETURN',
     'RPAREN',
     'SEMICOLON',
-    'TRUE',
+    'ARROW' # @ replace => in arrow function
 ]
 
 reserved_words = {
@@ -69,6 +65,7 @@ reserved_words = {
     'finally': 'FINALLY',
     'true': 'TRUE',
     'typedef': 'TYPEDEF',
+    'siu': 'PRINT'
 }
 
 tokens = tokens + list(reserved_words.values())
@@ -81,3 +78,36 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_EQ_V = r'='
+t_COMMA = r';'
+t_DIVISION = r'/'
+t_EQ = r'=='
+t_GT = r'>'
+t_GTE = r'>='
+t_LBRACE = r'{'
+t_RBRACE = r'}'
+t_LT = r'<'
+t_LTE = r'<='
+t_NEGATION = r'!'
+t_NE = r'!='
+t_SEMICOLON = r';'
+t_ARROW = r'@'
+
+re_SIG = t_MINUS + r'?'
+re_INT = re_SIG + r'([0-9]|[1-9][0-9]+)'
+re_FLOAT = re_SIG + re_INT + r'.' + r'[0-0]+'
+
+def t_ID(t):
+    r'\w+'
+    t.type = reserved_words.get(t.value, 'ID')
+    return t
+
+@TOKEN(re_INT)
+def t_INT(t):
+    t.value = int(t.value)
+    return t
+
+@TOKEN(re_FLOAT)
+def t_FLOAT(t):
+    t.value = float(t.value)
+    return t
