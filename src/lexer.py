@@ -29,7 +29,7 @@ tokens = [
     'LTE',
     'NEGATION',
     'NE',
-    # Josue Cobos (Inicia)
+    # Josue Cobos
     'MINUS',
     'MINUSMINUS',
     'OR',
