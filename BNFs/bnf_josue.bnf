@@ -1,9 +1,11 @@
-<if_statement> ::= <if> <l_par> <condition> <r_par> <l_bra> <r_bra>
+#while loop and string inizialization
+<while_statement> ::= <while> <l_par> <condition> <r_par> <l_bra> <r_bra>
 <condition> ::= <preposition> <operator> <preposition> | <preposition> <operator> <preposition> <more_condition>
 <more_condition> ::= <operator> <preposition>
 <operator> ::= "==" | "!=" | "&&" | "||"
 <preposition> ::= "!" <type_prep> | <type_prep> 
 <type_prep> ::= <string> | <integer> | <boolean> | <float> | <identifier>
+<initializeString> ::= "String " <identifier> "=" <string>
 <identifier> ::= ([a-z] | [A-Z] | "_") <more_var_char>
 <more_var_char> ::=  ([a-z] | [A-Z] | "_" | [0-9])*
 <string> ::= "'" <more_spec_chars> "'" | "''" <more_spec_chars> "''"
@@ -12,9 +14,26 @@
 <integer> ::= "0" | ("-" <int> | <int>)
 <float> ::= <integer> "." <int>
 <boolean> ::= "true" | "false"
-<if> ::= "if"
+<while> ::= "while"
 <l_par> ::= "("
 <r_par> ::= ")"
 <l_bra> ::= "{"
 <r_bra> ::= "}"
-<else> ::= "else"
+
+#String Functions
+<strFunctionCall> ::= <identifier> "." <strFunction> 
+<strFunction> ::= <strIndexOf> | <strReplaceAll> | <strContains>
+<strIndexOf> ::= "indexOf(" <pattern> "," <int> ")"
+<strReplaceAll> ::= "replaceAll(" <pattern> "," <string> ")"
+<strContains> ::= "contains(" <pattern> "," <int> ")"
+<pattern> ::= <string> | <regexWrapper>
+<regexWrapper> ::= "RegExp(r'" <regex> "')"
+<regex> ::= <uregex> | <uregex> <regex>
+<uregex> ::= <identifier> | <regexClass> <regexQ>?
+<regexClass> ::= "[" ("a-z" | "A-Z" | "A-z" | "\\d" | "\\w" | "\\D" | "\\W") "]"
+<regexQ> ::= "*" | "+" | "?"
+<identifier> ::= ([a-z] | [A-Z] | "_") <more_var_char>
+<more_var_char> ::=  ([a-z] | [A-Z] | "_" | [0-9])*
+<string> ::= "'" <more_spec_chars> "'" | "''" <more_spec_chars> "''"
+<more_spec_chars> ::=  ([a-z] | [A-Z] | "_" | [0-9] | "?" | "!" | "@" | ")" | "(" | "%" | "$" | "#" | "-" | "+")*
+<int> ::= [1-9] [0-9]*
