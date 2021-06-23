@@ -1,0 +1,48 @@
+<for_statement> ::= <for> <l_paren> "int" <assign> <semicolon> <s> <identifier> <s> <comparison_operator> <s> <integer> <semicolon> <s> <identifier> <r_paren>
+<list_assign> ::= (<var> | <list_reserved> | <list_diamonds>) <s> <identifier> <s> <equal> <s> (<list_body> | <list_init>)
+<list_method_call> ::= <identifier> "." <list_method>
+<list_function_call> ::= <identifier> "." <list_function>
+<list_indexing> ::= <identifier> <l_bracket> <int> <r_bracket>
+
+
+<list_body> ::= <l_bracket> (<void_element> | <elements>) <r_bracket>
+<list_init> ::= <new> <s> <list_reserved> <l_paren> <int>? <r_paren> 
+<elements> ::= <element> | <element> <more_elements>
+<more_elements> ::= <coma> <element>
+<element> ::= <string> | <integer> | <boolean> | <float> | <identifier>
+<var> ::= "var"
+<coma> ::= ","
+<void_element> ::= " "
+<boolean> ::= "true" | "false" | "0" | "1"
+<string> ::= "'" <more_spec_chars> "'" | "''" <more_spec_chars> "''"
+<more_spec_chars> ::=  ([a-z] | [A-Z] | "_" | [0-9] | "?" | "!" | "@" | ")" | "(" | "%" | "$" | "#" | "-" | "+")*
+<float> ::= <integer> "." <int>
+<list_reserved> ::= "List"
+<list_diamonds> ::= <list_reserved> <l_diamond> <type_identifier> <r_diamond>
+<type_identifier> ::= "int" | "String" | "bool" | "float"
+<l_diamond> ::= "<"
+<r_diamond> ::= ">"
+<new> ::= "new"
+<list_method> ::= "first" | "isEmpty" | "isNotEmpty" | "length" | "last" | "reversed" | "Single"
+<list_function> ::= <add> | <elementAt> | <join> | <contains>
+<add> ::= "add" <l_paren> <int> <r_paren>
+<elementAt> ::= "elementAt" <l_paren> <int> <r_paren>
+<join> ::= "join" <l_paren> <string> <r_paren>
+<contains> ::= "contains" <l_paren> <element> <r_paren>
+
+<assign> ::= <identifier> <s> <equal> <s> <integer> <semicolon>
+<integer> ::= "0" | ("-" <int> | <int>)
+<int> ::= [1-9] [0-9]*
+<identifier> ::= ([a-z] | [A-Z] | "_") <more_var_char>
+<more_var_char> ::=  ([a-z] | [A-Z] | "_" | [0-9])*
+<comparison_operator> ::= "==" | "!=" | "<" | "<=" | ">" | ">="
+<for> ::= "for"
+<l_paren> ::= "("
+<r_paren> ::= ")"
+<l_bracket> ::= "["
+<r_bracket> ::= "]"
+<l_brace> ::= "{"
+<r_brace> ::= "}"
+<equal> ::= "="
+<semicolon> ::= ";"
+<s> ::= " "
