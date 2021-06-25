@@ -94,7 +94,10 @@ reserved_words = {
     'remove': 'REMOVE_FUNC',
     'trim': "TRIM_FUNC",
     'endsWith': "ENDSWITH_FUNC",
-    'substring': "SUBSTRING_FUNC"
+    'substring': "SUBSTRING_FUNC",
+    'join': "JOIN_FUNC",
+    'contains': "CONTAINS_FUNC",
+    'elementAt': "ELEMENTAT_FUNC",
 }
 tokens = tokens + list(reserved_words.values())
 
