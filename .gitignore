@@ -5,6 +5,6 @@
 __pycache__/
 venv
 .vscode
-parsetab.py
+src/parsetab.py
 
 *.out
