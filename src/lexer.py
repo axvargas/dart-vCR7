@@ -91,9 +91,11 @@ reserved_words = {
     'Set': 'SET',
     'clear': 'CLEAR_FUNC',
     'toString': 'TOSTRING_FUNC',
-    'remove': 'REMOVE_FUNC'
+    'remove': 'REMOVE_FUNC',
+    'trim': "TRIM_FUNC",
+    'endsWith': "ENDSWITH_FUNC",
+    'substring': "SUBSTRING_FUNC"
 }
-
 tokens = tokens + list(reserved_words.values())
 
 # Andres Vargas
@@ -138,7 +140,6 @@ t_DOT = r'\.'
 t_INT = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
 t_FLOAT = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
 t_STRING = r'(\"|\')([^\\\n]|(\\.))*?(\"|\')'
-
 
 def t_IDENT(t):
     r'[A-Za-z_][\w_]*'

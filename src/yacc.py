@@ -4,12 +4,9 @@ from lexer import tokens
 def p_body(p):
   '''body : ifstm
           | idmap
-          | forstmt
           | whilestm
           | stringstm
-          | varfunc
-		      | forstmt'''
-
+          | varfunc'''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
@@ -115,6 +112,18 @@ def p_function_remove(p):
 
 def p_function_tostring(p):
   '''function : TOSTRING_FUNC LPAREN RPAREN'''
+
+def p_function_trim(p):
+  '''function : TRIM_FUNC LPAREN RPAREN'''
+
+def p_function_endsWith(p):
+  '''function : ENDSWITH_FUNC LPAREN STRING RPAREN'''
+
+def p_function_substring(p):
+  '''function : SUBSTRING_FUNC LPAREN INT  RPAREN'''
+
+def p_function_substring_2(p):
+  '''function : SUBSTRING_FUNC LPAREN INT COMMA INT RPAREN'''
 
 
 parser = yacc()
