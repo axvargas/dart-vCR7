@@ -3,10 +3,14 @@ from lexer import tokens
 
 def p_body(p):
   '''body : ifstm
-          | idmap'''
+          | idmap
+          | varfunc'''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
+
+def p_condition_single(p):
+  '''condition : preposition'''
 
 def p_condition(p):
   '''condition : preposition operator preposition'''
@@ -87,6 +91,19 @@ def p_value(p):
            | IDENT
            | iterable
            | tymap'''
+
+def p_varfunc(p):
+  '''varfunc : IDENT DOT function'''
+
+def p_function_clear(p):
+  '''function : CLEAR_FUNC LPAREN RPAREN'''
+
+def p_function_remove(p):
+  '''function : REMOVE_FUNC LPAREN STRING RPAREN'''
+
+def p_function_tostring(p):
+  '''function : TOSTRING_FUNC LPAREN RPAREN'''
+
 
 parser = yacc()
 
