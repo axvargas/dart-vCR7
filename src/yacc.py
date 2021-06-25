@@ -5,6 +5,39 @@ def p_body(p):
   '''body : ifstm
           | idmap'''
 
+
+def p_forstmt(p):
+    '''forstmt : FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
+    '''
+
+
+def p_assign(p):
+    '''assign : IDENT EQ_V INT
+    '''
+
+def p_comparisonint(p):
+    '''comparisonint : IDENT comparisonop INT
+    '''
+
+def p_varincredecre(p):
+	'''varincredecre : incredecre IDENT
+				  	 | IDENT incredecre
+	'''
+
+def p_incredecre(p):
+	'''incredecre : PLUSPLUS
+			   	  | MINUSMINUS
+	'''
+
+def p_comparisonop(p):
+    '''comparisonop : EQ
+                 	| GT
+                 	| GTE
+                 	| LT
+                 	| LTE
+                 	| NE
+    '''
+
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
 
@@ -120,3 +153,4 @@ while True:
   if not data: continue
   result = parser.parse(data)
   print(result)
+
