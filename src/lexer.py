@@ -258,7 +258,7 @@ if __name__ == "__main__":
         ░░╚██╔╝░░███████╗██║░░██║██████╔╝██║╚█████╔╝██║░╚███║
         ░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝░╚════╝░╚═╝░░╚══╝
 
-Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO
+Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO SIIIUUUUU
 
 ''')
     toTest = [func, callFunc]

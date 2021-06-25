@@ -1,6 +1,7 @@
 <if_statement> ::= <if> <l_par> <condition> <r_par> <l_bra> <r_bra>
 <condition> ::= <preposition> <operator> <preposition> | <preposition> <operator> <preposition> <more_condition>
-<more_condition> ::= <operator> <preposition>
+<inner_condition> ::= <l_par> <condition> <r_par>
+<more_condition> ::= <operator> <condition>
 <operator> ::= "==" | "!=" | "&&" | "||"
 <preposition> ::= "!" <type_prep> | <type_prep> 
 <type_prep> ::= <string> | <integer> | <boolean> | <float> | <identifier>
@@ -18,3 +19,34 @@
 <l_bra> ::= "{"
 <r_bra> ::= "}"
 <else> ::= "else"
+
+<id_dic> ::= <type> <identifier> <eq> <dictionary>
+<type> ::= "Map" (" " | <l_che> <type_key> "," <type_value> <r_che>)
+<type_key> ::= "String" | "int" | "double" | <identifier>
+<type_value> ::= "String" | "int" | "double" | <identifier> | <iterable> (" " | <l_che> <type_value> <r_che>)
+<iterable> ::= "List" | "Set" | "Map"
+<dictionary> ::= <l_bra> <item> <r_bra> "." <function>
+<item> ::= <key> <dots> <value> | <key> <dots> <value> "," <item>
+<key> ::= <string_key> | <int>
+<value> ::= <string> | <integer> | <boolean> | <float> | <string>
+<boolean> ::= "true" | "false"
+<float> ::= <integer> "." <int>
+<integer> ::= "0" | ("-" <int> | <int>)
+<int> ::= [1-9] [0-9]*
+<identifier> ::= ([a-z] | [A-Z] | "_") <more_var_char>
+<more_var_char> ::=  ([a-z] | [A-Z] | "_" | [0-9])*
+<string_key> ::= "'"  <more_spec_chars> <more_spec_chars>* "'" | "''" <more_spec_chars> <more_spec_chars>*  "''"
+<string> ::= "'" <more_spec_chars>* "'" | "''" <more_spec_chars>* "''"
+<more_spec_chars> ::=  ([a-z] | [A-Z] | "_" | [0-9] | "?" | "!" | "@" | ")" | "(" | "%" | "$" | "#" | "-" | "+")
+<dots> ::= ":"
+<l_bra> ::= "{"
+<r_bra> ::= "}"
+<l_par> ::= "("
+<r_par> ::= ")"
+<l_che> ::= "<"
+<r_che> ::= ">"
+<eq> ::= "="
+<function> ::= <clear> | <remove> | <to_string>
+<clear> ::= "clear" <l_par> <r_par>
+<remove> ::= "remove" <l_par> <key> <r_par>
+<to_string> ::= "toString" <l_par> <r_par>
