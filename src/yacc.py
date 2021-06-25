@@ -3,7 +3,10 @@ from lexer import tokens
 
 def p_body(p):
   '''body : ifstm
-          | idmap'''
+          | idmap
+          | forstmt
+          | whilestm
+          | stringstm'''
 
 
 def p_forstmt(p):
@@ -40,6 +43,9 @@ def p_comparisonop(p):
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
+
+def p_whilestm(p):
+  '''whilestm : WHILE LPAREN condition RPAREN LBRACE RBRACE'''
 
 def p_condition(p):
   '''condition : preposition operator preposition'''
@@ -97,7 +103,11 @@ def p_tyvalue(p):
 
 def p_iterable(p):
   '''iterable : LIST
-              | SET'''
+              | SET
+              | STRING'''
+
+def p_string(p):
+  '''stringstm : STRING_TYPE IDENT EQ_V STRING'''
 
 def p_dictionary(p):
   '''dictionary : LBRACE item RBRACE'''
