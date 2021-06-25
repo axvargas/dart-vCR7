@@ -1,6 +1,10 @@
 from ply.yacc import yacc
 from lexer import tokens
 
+def p_body(p):
+  '''body : ifstm
+          | idmap'''
+
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
 
@@ -36,6 +40,53 @@ def p_typre(p):
            | FLOAT
            | IDENT
   '''
+
+def p_idmap(p):
+  '''idmap : tymap IDENT EQ_V dictionary'''
+
+def p_tymap(p):
+  '''tymap : MAP
+           | MAP LT tykey COMMA tyvalue GT'''
+
+def p_tykey(p):
+  '''tykey : STRING_TYPE
+           | DOUBLE_TYPE
+           | INT_TYPE'''
+
+def p_tyvalue(p):
+  '''tyvalue : STRING_TYPE
+             | DOUBLE_TYPE
+             | INT_TYPE
+             | BOOLEAN
+             | IDENT
+             | iterable
+             | tymap'''
+
+def p_iterable(p):
+  '''iterable : LIST
+              | SET'''
+
+def p_dictionary(p):
+  '''dictionary : LBRACE item RBRACE'''
+
+def p_item(p):
+  '''item : key DDOTS value
+          | key DDOTS value COMMA item'''
+
+def p_key(p):
+  '''key : STRING
+         | INT
+         | FLOAT'''
+
+def p_value(p):
+  '''value : STRING
+           | FLOAT
+           | INT
+           | FALSE
+           | TRUE
+           | IDENT
+           | iterable
+           | tymap'''
 
 parser = yacc()
 

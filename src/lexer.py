@@ -85,7 +85,10 @@ reserved_words = {
     'typedef': 'TYPEDEF',
     'siu': 'PRINT',
     'String': 'STRING_TYPE',
-    'List': 'LIST'
+    'List': 'LIST',
+    'Map': 'MAP',
+    'Set': 'SET',
+    '.': 'DOT'
 }
 
 tokens = tokens + list(reserved_words.values())
