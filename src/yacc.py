@@ -2,9 +2,15 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : ifstm
-          | idmap
-          | whilestm
+  '''body : nonColStms
+          | colStms SEMICOLON'''
+
+def p_nonColStms(p):
+  '''nonColStms : ifstm
+          | whilestm'''
+          
+def p_colStms(p):
+  '''colStms :  idmap
           | stringstm
           | varfunc'''
 
