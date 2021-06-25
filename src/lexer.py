@@ -16,6 +16,7 @@ tokens = [
     'EQ',
     'EQ_V',
     'GT',
+    'DOT',
     # Andres Vargas
     'GTE',
     'IDENT',
@@ -88,7 +89,9 @@ reserved_words = {
     'List': 'LIST',
     'Map': 'MAP',
     'Set': 'SET',
-    '.': 'DOT'
+    'clear': 'CLEAR_FUNC',
+    'toString': 'TOSTRING_FUNC',
+    'remove': 'REMOVE_FUNC'
 }
 
 tokens = tokens + list(reserved_words.values())
@@ -129,6 +132,7 @@ t_PLUSPLUS = r'\+\+'
 t_MINUSMINUS = r'--'
 t_AND = r'&&'
 t_OR = r'\|\|'
+t_DOT = r'\.'
 
 #re_SIG = t_MINUS + r'?'
 t_INT = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'

@@ -6,46 +6,19 @@ def p_body(p):
           | idmap
           | forstmt
           | whilestm
-          | stringstm'''
+          | stringstm
+          | varfunc
+		      | forstmt'''
 
-
-def p_forstmt(p):
-    '''forstmt : FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
-    '''
-
-
-def p_assign(p):
-    '''assign : IDENT EQ_V INT
-    '''
-
-def p_comparisonint(p):
-    '''comparisonint : IDENT comparisonop INT
-    '''
-
-def p_varincredecre(p):
-	'''varincredecre : incredecre IDENT
-				  	 | IDENT incredecre
-	'''
-
-def p_incredecre(p):
-	'''incredecre : PLUSPLUS
-			   	  | MINUSMINUS
-	'''
-
-def p_comparisonop(p):
-    '''comparisonop : EQ
-                 	| GT
-                 	| GTE
-                 	| LT
-                 	| LTE
-                 	| NE
-    '''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
 
 def p_whilestm(p):
   '''whilestm : WHILE LPAREN condition RPAREN LBRACE RBRACE'''
+
+def p_condition_single(p):
+  '''condition : preposition'''
 
 def p_condition(p):
   '''condition : preposition operator preposition'''
@@ -130,6 +103,19 @@ def p_value(p):
            | IDENT
            | iterable
            | tymap'''
+
+def p_varfunc(p):
+  '''varfunc : IDENT DOT function'''
+
+def p_function_clear(p):
+  '''function : CLEAR_FUNC LPAREN RPAREN'''
+
+def p_function_remove(p):
+  '''function : REMOVE_FUNC LPAREN STRING RPAREN'''
+
+def p_function_tostring(p):
+  '''function : TOSTRING_FUNC LPAREN RPAREN'''
+
 
 parser = yacc()
 
