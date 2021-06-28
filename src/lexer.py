@@ -98,6 +98,9 @@ reserved_words = {
     'join': "JOIN_FUNC",
     'contains': "CONTAINS_FUNC",
     'elementAt': "ELEMENTAT_FUNC",
+    'addAll': 'ADD_ALL_FUNC',
+    'containsKey': 'CONTAINS_DICT_FUNC',
+    'containsValue': 'CONTAINS_VALUE_FUNC'
 }
 tokens = tokens + list(reserved_words.values())
 

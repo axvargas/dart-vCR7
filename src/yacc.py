@@ -7,13 +7,14 @@ def p_body(p):
 
 def p_nonColStms(p):
   '''nonColStms : ifstm
-          | whilestm
-		  | forstmt'''
+                | whilestm
+		            | forstmt'''
           
 def p_colStms(p):
   '''colStms :  idmap
           | stringstm
           | varfunc
+          | dicfunc
           | stringfunc
 		      | listassign'''
 
@@ -87,6 +88,9 @@ def p_iterable(p):
 
 def p_string(p):
   '''stringstm : STRING_TYPE IDENT EQ_V STRING'''
+
+def p_dicfunc(p):
+  '''dicfunc : dictionary DOT function'''
 
 def p_dictionary(p):
   '''dictionary : LBRACE item RBRACE'''
@@ -191,6 +195,15 @@ def p_stringfunc(p):
 
 def p_function_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''
+
+def p_function_addAll(p):
+  '''function : ADD_ALL_FUNC LPAREN dictionary  RPAREN'''
+
+def p_function_containsKey(p):
+  '''function : CONTAINS_DICT_FUNC LPAREN key RPAREN'''
+
+def p_function_containsValue(p):
+  '''function : CONTAINS_VALUE_FUNC LPAREN value RPAREN'''
 
 def p_function_remove(p):
   '''function : REMOVE_FUNC LPAREN STRING RPAREN'''
