@@ -12,7 +12,8 @@ def p_nonColStms(p):
 def p_colStms(p):
   '''colStms :  idmap
           | stringstm
-          | varfunc'''
+          | varfunc
+          | stringfunc'''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
@@ -109,6 +110,9 @@ def p_value(p):
 
 def p_varfunc(p):
   '''varfunc : IDENT DOT function'''
+
+def p_stringfunc(p):
+  '''stringfunc : STRING DOT function'''
 
 def p_function_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''

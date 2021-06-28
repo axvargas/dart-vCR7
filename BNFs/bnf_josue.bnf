@@ -5,11 +5,14 @@
 <operator> ::= "==" | "!=" | "&&" | "||"
 <preposition> ::= "!" <type_prep> | <type_prep> 
 <type_prep> ::= <string> | <integer> | <boolean> | <float> | <identifier>
+
 <initializeString> ::= "String " <identifier> "=" <string>
 <identifier> ::= ([a-z] | [A-Z] | "_") <more_var_char>
 <more_var_char> ::=  ([a-z] | [A-Z] | "_" | [0-9])*
 <string> ::= "'" <more_spec_chars> "'" | "''" <more_spec_chars> "''"
 <more_spec_chars> ::=  ([a-z] | [A-Z] | "_" | [0-9] | "?" | "!" | "@" | ")" | "(" | "%" | "$" | "#" | "-" | "+")*
+
+
 <int> ::= [1-9] [0-9]*
 <integer> ::= "0" | ("-" <int> | <int>)
 <float> ::= <integer> "." <int>

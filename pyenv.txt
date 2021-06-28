@@ -1,0 +1,1 @@
+/home/josuecobos/PythonEnvs/LPProject/bin/activate
