@@ -160,6 +160,7 @@ def p_moreelements(p):
 
 def p_forstmt(p):
     '''forstmt : FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
+                | FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE body RBRACE
     '''
 
 def p_assign(p):
