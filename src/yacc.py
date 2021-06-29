@@ -13,6 +13,7 @@ def p_nonColStms(p):
 def p_colStms(p):
   '''colStms :  idmap
           | stringstm
+          | listfunc
           | varfunc
           | dicfunc
           | stringfunc
@@ -114,7 +115,8 @@ def p_value(p):
            | TRUE
            | IDENT
            | iterable
-           | tymap'''
+           | tymap
+           | listassigntype'''
 
 def p_listassign(p):
     '''listassign : VAR IDENT EQ_V list
@@ -122,6 +124,10 @@ def p_listassign(p):
 
 def p_listassign_diamonds(p):
     '''listassign : LIST LT typedata GT IDENT EQ_V list
+    '''
+  
+def p_listassigntype(p):
+  '''listassigntype : LIST LT typedata GT IDENT EQ_V list
     '''
 
 def p_typedata(p):
@@ -196,6 +202,9 @@ def p_varfunc(p):
 def p_stringfunc(p):
   '''stringfunc : STRING DOT function'''
 
+def p_listfunc(p):
+  '''listfunc : list DOT function'''
+
 def p_function_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''
 
@@ -259,6 +268,7 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 '''
 )
+
 
 while True:
   try:
