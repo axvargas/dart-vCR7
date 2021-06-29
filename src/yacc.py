@@ -269,13 +269,14 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 '''
 )
 
-
-while True:
-  try:
-    data = input('CR7>>> ')
-  except EOFError:
-    break
-  if not data: continue
+with open('./src/testing/data.dart', 'r') as f:
+  lines = f.readlines()
+  for line in lines:
+    try:
+      data = line
+    except EOFError:
+      break
+    if not data: continue
   result = parser.parse(data)
   print(result)
-
+  
