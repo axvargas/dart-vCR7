@@ -17,7 +17,15 @@ def p_colStms(p):
           | varfunc
           | dicfunc
           | stringfunc
-		      | listassign'''
+		      | listassign
+          | siuprint'''
+
+def p_siuprint(p):
+  '''siuprint : PRINT LPAREN printable RPAREN'''
+
+def p_printable(p):
+  '''printable : STRING
+               | IDENT'''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE
@@ -46,6 +54,10 @@ def p_operator(p):
               | NE
               | AND
               | OR
+              | GT
+              | GTE
+              | LT
+              | LTE
   '''
 
 def p_preposition(p):
@@ -301,21 +313,11 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 '''
 )
-
-"""with open('./src/testing/data.dart', 'r') as f:
-  lines = "".join(f.readlines())
-  print(lines)
-  try:
-    data = lines
-  except Exception as e:
-    print(e)
-  result = parser.parse(data)
-  print(result)
-  """
 while True:
-  entrada = input(">>")
   try:
-    result = parser.parse(entrada)
-  except Exception as e:
-    print(e)
+    data = input('CR7>>> ')
+  except EOFError:
+    break
+  if not data: continue
+  result = parser.parse(data)
   print(result)
