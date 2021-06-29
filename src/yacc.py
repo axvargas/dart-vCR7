@@ -19,7 +19,15 @@ def p_colStms(p):
           | dicfunc
           | stringfunc
 		      | listassign
-          | operation'''
+          | operation
+          | siuprint'''
+
+def p_siuprint(p):
+  '''siuprint : PRINT LPAREN printable RPAREN'''
+
+def p_printable(p):
+  '''printable : STRING
+               | IDENT'''
 
 def p_ifstm(p):
   '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE
@@ -315,13 +323,12 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 '''
 )
 
-with open('./src/testing/data.dart', 'r') as f:
-  lines = "".join(f.readlines())
-  print(lines)
+while True:
   try:
-    data = lines
-  except Exception as e:
-    print(e)
+    data = input('CR7>>> ')
+  except EOFError:
+    break
+  if not data: continue
   result = parser.parse(data)
   print(result)
   
