@@ -113,7 +113,8 @@ def p_value(p):
            | TRUE
            | IDENT
            | iterable
-           | tymap'''
+           | tymap
+           | listassigntype'''
 
 def p_listassign(p):
     '''listassign : VAR IDENT EQ_V list
@@ -121,6 +122,10 @@ def p_listassign(p):
 
 def p_listassign_diamonds(p):
     '''listassign : LIST LT typedata GT IDENT EQ_V list
+    '''
+  
+def p_listassigntype(p):
+  '''listassigntype : LIST LT typedata GT IDENT EQ_V list
     '''
 
 def p_typedata(p):
@@ -260,6 +265,7 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 '''
 )
+
 
 while True:
   try:
