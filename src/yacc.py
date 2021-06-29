@@ -8,7 +8,8 @@ def p_body(p):
 def p_nonColStms(p):
   '''nonColStms : ifstm
                 | whilestm
-		            | forstmt'''
+		            | forstmt
+                | func'''
           
 def p_colStms(p):
   '''colStms :  idmap
@@ -137,6 +138,17 @@ def p_typedata(p):
                 | STRING_TYPE
     '''
 
+def p_retornable(p):
+  '''retornable : INT_TYPE
+                | DOUBLE_TYPE
+                | BOOLEAN
+                | STRING_TYPE
+                | VOID
+                | LIST
+                | MAP
+                | SET
+  '''
+
 def p_listassign_list(p):
     '''listassign : LIST IDENT EQ_V list
     '''
@@ -195,6 +207,25 @@ def p_comparisonop(p):
                     | LTE
                     | NE
     '''
+
+def p_func(p):
+  '''func : retornable IDENT funcParams LBRACE RBRACE
+          |  retornable IDENT funcParams LBRACE body RBRACE 
+  '''
+
+def p_singleparams(p):
+  '''sigleParam : typedata IDENT
+  '''
+
+def p_mulparams(p):
+  '''mulParams : sigleParam
+                | COMMA sigleParam
+  '''
+
+def p_params(p):
+  '''funcParams : LPAREN RPAREN
+                | LPAREN mulParams RPAREN
+  '''
 
 def p_varfunc(p):
   '''varfunc : IDENT DOT function'''
