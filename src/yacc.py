@@ -2,7 +2,8 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : func'''
+  '''body : nonColStms
+          | colStms SEMICOLON'''
 
 def p_nonColStms(p):
   '''nonColStms : ifstm
