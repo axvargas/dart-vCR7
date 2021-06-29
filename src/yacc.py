@@ -2,8 +2,7 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : nonColStms
-          | colStms SEMICOLON'''
+  '''body : func'''
 
 def p_nonColStms(p):
   '''nonColStms : ifstm
@@ -222,22 +221,25 @@ def p_comparisonop(p):
     '''
 
 def p_func(p):
-  '''func : retornable IDENT funcParams LBRACE RBRACE
-          |  retornable IDENT funcParams LBRACE body RBRACE 
+  '''func : retornable IDENT LPAREN param RPAREN LBRACE RBRACE
+          |  retornable IDENT LPAREN param RPAREN LBRACE body RBRACE 
   '''
 
-def p_singleparams(p):
-  '''sigleParam : typedata IDENT
+def p_param_single(p):
+  '''param : typedata IDENT
   '''
 
-def p_mulparams(p):
-  '''mulParams : sigleParam
-                | COMMA sigleParam
+def p_param(p):
+  '''param : typedata IDENT COMMA typedata IDENT
   '''
 
-def p_params(p):
-  '''funcParams : LPAREN RPAREN
-                | LPAREN mulParams RPAREN
+def p_param_more(p):
+  '''param : typedata IDENT COMMA typedata IDENT moreparam
+  '''
+
+def p_more_params(p):
+  '''moreparam : COMMA typedata IDENT
+                | COMMA typedata IDENT moreparam
   '''
 
 def p_varfunc(p):
@@ -322,7 +324,6 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 '''
 )
-
 while True:
   try:
     data = input('CR7>>> ')
@@ -331,4 +332,3 @@ while True:
   if not data: continue
   result = parser.parse(data)
   print(result)
-  
