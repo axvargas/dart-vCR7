@@ -270,13 +270,12 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 )
 
 with open('./src/testing/data.dart', 'r') as f:
-  lines = f.readlines()
-  for line in lines:
-    try:
-      data = line
-    except EOFError:
-      break
-    if not data: continue
+  lines = "".join(f.readlines())
+  print(lines)
+  try:
+    data = lines
+  except Exception as e:
+    print(e)
   result = parser.parse(data)
   print(result)
   
