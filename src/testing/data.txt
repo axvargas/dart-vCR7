@@ -1,9 +1,1 @@
-/*
- * Created Date: Monday June 28th 2021 10:50:15 pm
- * Author: Andrés X. Vargas
- * -----
- * Last Modified: Monday June 28th 2021 10:50:15 pm
- * Modified By: the developer known as Andrés X. Vargas at <axvargas@fiec.espol.edu.ec>
- * -----
- * Copyright (c) 2021 MattuApps
- */
+
