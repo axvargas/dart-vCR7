@@ -19,10 +19,12 @@ def p_colStms(p):
 		      | listassign'''
 
 def p_ifstm(p):
-  '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE'''
+  '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE
+            | IF LPAREN condition RPAREN LBRACE body RBRACE'''
 
 def p_whilestm(p):
-  '''whilestm : WHILE LPAREN condition RPAREN LBRACE RBRACE'''
+  '''whilestm : WHILE LPAREN condition RPAREN LBRACE RBRACE
+            | WHILE LPAREN condition RPAREN LBRACE body RBRACE'''
 
 def p_condition_single(p):
   '''condition : preposition'''
