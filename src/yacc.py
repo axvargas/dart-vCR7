@@ -224,6 +224,8 @@ def p_comparisonop(p):
 def p_func(p):
   '''func : retornable IDENT LPAREN param RPAREN LBRACE RBRACE
           |  retornable IDENT LPAREN param RPAREN LBRACE body RBRACE 
+          | retornable IDENT LPAREN RPAREN LBRACE RBRACE
+          |  retornable IDENT LPAREN RPAREN LBRACE body RBRACE
   '''
 
 def p_param_single(p):
