@@ -46,6 +46,10 @@ def p_operator(p):
               | NE
               | AND
               | OR
+              | GT
+              | GTE
+              | LT
+              | LTE
   '''
 
 def p_preposition(p):

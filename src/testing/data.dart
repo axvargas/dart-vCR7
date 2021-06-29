@@ -18,4 +18,4 @@ void func1(bool block, int timeout) {
     };
     mapa.remove('uno');
     mapa.clear();
-  }
+}
