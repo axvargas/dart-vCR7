@@ -13,6 +13,7 @@ def p_nonColStms(p):
 def p_colStms(p):
   '''colStms :  idmap
           | stringstm
+          | listfunc
           | varfunc
           | dicfunc
           | stringfunc
@@ -192,6 +193,9 @@ def p_varfunc(p):
 
 def p_stringfunc(p):
   '''stringfunc : STRING DOT function'''
+
+def p_listfunc(p):
+  '''listfunc : list DOT function'''
 
 def p_function_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''
