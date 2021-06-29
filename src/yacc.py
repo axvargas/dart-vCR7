@@ -19,6 +19,7 @@ def p_colStms(p):
           | dicfunc
           | stringfunc
 		      | listassign
+          | operation
           | siuprint'''
 
 def p_siuprint(p):
@@ -290,6 +291,16 @@ def p_function_contains(p):
 def p_function_elementat(p):
 	'''function : ELEMENTAT_FUNC LPAREN INT RPAREN'''
 
+def p_operation(p):
+  '''operation : preposition oparit preposition
+  '''
+
+def p_oparit(p):
+  '''oparit : PLUS
+            | MINUS
+            | TIMES
+            | DIVISION
+  '''
 
 parser = yacc()
 
