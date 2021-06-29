@@ -1,7 +1,4 @@
- 
-class MyApp {
-
-  void func1(bool block, int timeout) {
+void func1(bool block, int timeout) {
     if (block) {
       siu('BLOQUEADO!');
       if (timeout < 120) {
@@ -22,5 +19,3 @@ class MyApp {
     mapa.remove('uno');
     mapa.clear();
   }
-
-}
