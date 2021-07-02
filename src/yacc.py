@@ -2,29 +2,37 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : nonColStms
-          | colStms SEMICOLON'''
+  '''body : colstms'''
 
 def p_empty(p):
   '''empty :'''
   pass
 
-def p_nonColStms(p):
-  '''nonColStms : ifstm
-                | whilestm
-		            | forstmt
-                | func'''
-          
-def p_colStms(p):
-  '''colStms :  idmap
-          | stringstm
-          | listfunc
-          | varfunc
-          | dicfunc
-          | stringfunc
-		      | listassign
-          | operation
-          | siuprint'''
+def p_nonColtypes(p):
+  '''nonColtypes : ifstm
+                 | elstm
+                 | whilestm
+		             | forstmt
+                 | func'''
+
+def p_colstms_no(p):
+  '''colstms : nonColtypes
+             | nonColtypes colstms'''
+
+def p_coltypes(p):
+  '''coltypes : idmap
+              | stringstm
+              | listfunc
+              | varfunc
+              | dicfunc
+              | stringfunc
+              | listassign
+              | operation
+              | siuprint'''
+
+def p_colstms(p):
+  '''colstms : coltypes SEMICOLON
+             | coltypes SEMICOLON colstms'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN printable RPAREN'''
@@ -34,8 +42,15 @@ def p_printable(p):
                | IDENT'''
 
 def p_ifstm(p):
-  '''ifstm : IF LPAREN condition RPAREN LBRACE RBRACE
-            | IF LPAREN condition RPAREN LBRACE body RBRACE'''
+  '''ifstm : ifelse LPAREN condition RPAREN LBRACE RBRACE
+           | ifelse LPAREN condition RPAREN LBRACE body RBRACE'''
+
+def p_elstm(p):
+  '''elstm : ELSE LBRACE body RBRACE'''
+
+def p_ifelse(p):
+  '''ifelse : IF
+            | ELSE IF'''
 
 def p_whilestm(p):
   '''whilestm : WHILE LPAREN condition RPAREN LBRACE RBRACE
@@ -362,11 +377,23 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 '''
 )
-while True:
+
+""" while True:
   try:
     data = input('CR7>>> ')
-  except EOFError:
+  except EOFError as e:
+    print(e)
     break
   if not data: continue
   result = parser.parse(data)
-  print(result)
+  print(result) """
+
+
+with open('./src/testing/data.dart') as data:
+  data = data.read()
+  print(f'DATA:\n\n{data}\n\n')
+  result = parser.parse(data)
+  if not result:
+    print('SIIUUU!')
+  else:
+    print('Error :(')
