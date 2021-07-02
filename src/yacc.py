@@ -5,6 +5,10 @@ def p_body(p):
   '''body : nonColStms
           | colStms SEMICOLON'''
 
+def p_empty(p):
+  '''empty :'''
+  pass
+
 def p_nonColStms(p):
   '''nonColStms : ifstm
                 | whilestm
@@ -294,7 +298,38 @@ def p_function_elementat(p):
 	'''function : ELEMENTAT_FUNC LPAREN INT RPAREN'''
 
 def p_operation(p):
-  '''operation : preposition oparit preposition
+  '''operation : arit oparit arit
+  '''
+
+def p_operation_p(p):
+  '''operation : LPAREN arit oparit arit RPAREN
+  '''
+
+def p_operation_m(p):
+  '''operation : arit oparit arit moreArit
+  '''
+
+def p_operation_mp(p):
+  '''operation : LPAREN arit oparit arit moreAritP
+  '''
+
+def p_moreArit(p):
+  '''moreArit : oparit arit
+              | oparit arit moreArit
+              | empty
+  '''
+
+def p_moreAritP(p):
+  '''moreAritP : oparit arit RPAREN
+               | oparit arit moreAritP
+               | empty
+  '''
+
+def p_arit(p):
+  '''arit : FLOAT
+          | INT
+          | IDENT
+          | operation
   '''
 
 def p_oparit(p):
