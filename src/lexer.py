@@ -251,9 +251,24 @@ var i = 0;
 while(i <= 10) { 
     siu(i);
     i++; 
-} 
-
+}
 '''
+
+def get_tokens(lexer, data):
+    lexer.input(data)
+    tokens = []
+    while True:
+        tok = lexer.token()
+        if not tok: 
+            break      # No more input
+        tokens.append({
+            'type': tok.type, 
+            'value': tok.value,
+            'lineno': tok.lineno, 
+            'lexpos': tok.lexpos
+        })
+    return tokens
+
 if __name__ == "__main__":
     print('''
         
@@ -275,7 +290,16 @@ if __name__ == "__main__":
 Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO SIIIUUUUU
 
 ''')
-    toTest = [func, callFunc]
-    for testText in toTest:
-        lex.runmain(lexer, testText)
-        print('\n')
+    lexer.input(callFunc)
+    tokens = []
+    while True:
+        tok = lexer.token()
+        if not tok: 
+            break      # No more input
+        tokens.append({
+            'type': tok.type, 
+            'value': tok.value,
+            'lineno': tok.lineno, 
+            'lexpos': tok.lexpos
+        })
+    print(tokens)
