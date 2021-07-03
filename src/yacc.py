@@ -270,7 +270,7 @@ def p_stringfunc(p):
   '''stringfunc : STRING DOT function'''
 
 def p_listfunc(p):
-  '''listfunc : list DOT function'''
+  '''listfunc : list DOT functionlist'''
 
 def p_functionmap_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''
@@ -302,13 +302,13 @@ def p_function_substring(p):
 def p_function_substring_2(p):
   '''function : SUBSTRING_FUNC LPAREN INT COMMA INT RPAREN'''
 
-def p_function_join(p):
+def p_functionlist_join(p):
 	'''function : JOIN_FUNC LPAREN STRING RPAREN'''
 
-def p_function_contains(p):
+def p_functionlist_contains(p):
 	'''function : CONTAINS_FUNC LPAREN  typre RPAREN'''
 
-def p_function_elementat(p):
+def p_functionlist_elementat(p):
 	'''function : ELEMENTAT_FUNC LPAREN INT RPAREN'''
 
 ### SPRINT 3
