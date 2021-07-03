@@ -343,7 +343,6 @@ def p_moreAritP(p):
 def p_arit(p):
   '''arit : FLOAT
           | INT
-          | IDENT
           | operation
   '''
 
