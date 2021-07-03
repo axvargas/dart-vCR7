@@ -23,7 +23,6 @@ def p_coltypes(p):
   '''coltypes : idmap
               | stringstm
               | listfunc
-              | varfunc
               | dicfunc
               | stringfunc
               | listassign
@@ -264,8 +263,8 @@ def p_more_params(p):
                 | COMMA typedata IDENT moreparam
   '''
 
-def p_varfunc(p):
-  '''varfunc : IDENT DOT function'''
+#def p_varfunc(p):
+#  '''varfunc : IDENT DOT function'''
 
 def p_stringfunc(p):
   '''stringfunc : STRING DOT function'''
