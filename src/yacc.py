@@ -126,7 +126,7 @@ def p_string(p):
   '''stringstm : STRING_TYPE IDENT EQ_V STRING'''
 
 def p_dicfunc(p):
-  '''dicfunc : dictionary DOT function'''
+  '''dicfunc : dictionary DOT functionmap'''
 
 def p_dictionary(p):
   '''dictionary : LBRACE item RBRACE'''
@@ -273,19 +273,19 @@ def p_stringfunc(p):
 def p_listfunc(p):
   '''listfunc : list DOT function'''
 
-def p_function_clear(p):
+def p_functionmap_clear(p):
   '''function : CLEAR_FUNC LPAREN RPAREN'''
 
-def p_function_addAll(p):
+def p_functionmap_addAll(p):
   '''function : ADD_ALL_FUNC LPAREN dictionary  RPAREN'''
 
-def p_function_containsKey(p):
+def p_functionmap_containsKey(p):
   '''function : CONTAINS_DICT_FUNC LPAREN key RPAREN'''
 
-def p_function_containsValue(p):
+def p_functionmap_containsValue(p):
   '''function : CONTAINS_VALUE_FUNC LPAREN value RPAREN'''
 
-def p_function_remove(p):
+def p_functionmap_remove(p):
   '''function : REMOVE_FUNC LPAREN STRING RPAREN'''
 
 def p_function_tostring(p):
