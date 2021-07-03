@@ -312,6 +312,7 @@ def p_function_contains(p):
 def p_function_elementat(p):
 	'''function : ELEMENTAT_FUNC LPAREN INT RPAREN'''
 
+### SPRINT 3
 def p_operation(p):
   '''operation : arit oparit arit
   '''
