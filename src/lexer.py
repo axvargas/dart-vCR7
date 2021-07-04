@@ -173,7 +173,8 @@ def t_newline(t):
 
 
 def t_error(t):
-    print(f"Illegal character '{t.value}' at line {t.lineno}, col {t.lexpos}")
+    col = find_column(t.lexer.lexdata, t)
+    print(f"Illegal character '{t.value}' at line {t.lineno}, col {col}")
     t.lexer.skip(1)
 
 
@@ -278,6 +279,10 @@ def get_tokens(lexer, data):
         })
     return tokens
 
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return (token.lexpos - line_start) + 1
+
 if __name__ == "__main__":
     print('''
         
@@ -305,10 +310,12 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO SIIIUU
         tok = lexer.token()
         if not tok: 
             break      # No more input
+        col = find_column(error_data, tok)
+        print(col)
         tokens.append({
             'type': tok.type, 
             'value': tok.value,
             'lineno': tok.lineno, 
-            'lexpos': tok.lexpos
+            'lexpos': col
         })
     print(tokens)
