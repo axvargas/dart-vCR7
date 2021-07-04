@@ -12,6 +12,11 @@ void example(bool block, int digit) {
   List<int> lista = [1, 2, 3, 4, 5];
 
   Map<String, int> mapa = {'uno': 1,'dos': 2, 'tres': 3};
-  mapa.remove('uno');
-  mapa.clear();
+
+  lista.shuffle();
+  [1,2,3,4,5,6].shuffle();
+  [1,2,3,4,5,6].getRange(1,3);
+
+  error == '' 'hii';;
+
 }

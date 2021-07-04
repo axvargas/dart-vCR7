@@ -98,6 +98,9 @@ reserved_words = {
     'join': "JOIN_FUNC",
     'contains': "CONTAINS_FUNC",
     'elementAt': "ELEMENTAT_FUNC",
+    'add': "ADD_FUNC",
+    'shuffle': "SHUFFLE_FUNC",
+    'getRange': "GETRANGE_FUNC",
     'addAll': 'ADD_ALL_FUNC',
     'containsKey': 'CONTAINS_DICT_FUNC',
     'containsValue': 'CONTAINS_VALUE_FUNC'
@@ -164,13 +167,13 @@ def _FLOAT(t):
     return t """
 
 
-def t_NEWLINE(t):
+def t_newline(t):
     r'\n+'
-    t.lexer.lineno += t.value.count("\n")
+    t.lexer.lineno += len(t.value)
 
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value)
+    print(f"Illegal character '{t.value}' at line {t.lineno}, col {t.lexpos}")
     t.lexer.skip(1)
 
 
@@ -254,6 +257,12 @@ while(i <= 10) {
 }
 '''
 
+error_data = '''
+error == \][ppoo];;
+error == \][ppoo];;
+error == \][ppoo];;
+'''
+
 def get_tokens(lexer, data):
     lexer.input(data)
     tokens = []
@@ -290,7 +299,7 @@ if __name__ == "__main__":
 Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO SIIIUUUUU
 
 ''')
-    lexer.input(callFunc)
+    lexer.input(error_data)
     tokens = []
     while True:
         tok = lexer.token()

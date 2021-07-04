@@ -263,29 +263,32 @@ def p_more_params(p):
                 | COMMA typedata IDENT moreparam
   '''
 
-#def p_varfunc(p):
-#  '''varfunc : IDENT DOT function'''
+# def p_varfunc(p):
+#  '''varfunc : IDENT DOT function
+#             | IDENT DOT functionmap
+#             | IDENT DOT functionlist'''
 
 def p_stringfunc(p):
   '''stringfunc : STRING DOT function'''
 
 def p_listfunc(p):
-  '''listfunc : list DOT functionlist'''
+  '''listfunc : list DOT functionlist
+              | IDENT DOT functionlist'''
 
 def p_functionmap_clear(p):
-  '''function : CLEAR_FUNC LPAREN RPAREN'''
+  '''functionmap : CLEAR_FUNC LPAREN RPAREN'''
 
 def p_functionmap_addAll(p):
-  '''function : ADD_ALL_FUNC LPAREN dictionary  RPAREN'''
+  '''functionmap : ADD_ALL_FUNC LPAREN dictionary  RPAREN'''
 
 def p_functionmap_containsKey(p):
-  '''function : CONTAINS_DICT_FUNC LPAREN key RPAREN'''
+  '''functionmap : CONTAINS_DICT_FUNC LPAREN key RPAREN'''
 
 def p_functionmap_containsValue(p):
-  '''function : CONTAINS_VALUE_FUNC LPAREN value RPAREN'''
+  '''functionmap : CONTAINS_VALUE_FUNC LPAREN value RPAREN'''
 
 def p_functionmap_remove(p):
-  '''function : REMOVE_FUNC LPAREN STRING RPAREN'''
+  '''functionmap : REMOVE_FUNC LPAREN STRING RPAREN'''
 
 def p_function_tostring(p):
   '''function : TOSTRING_FUNC LPAREN RPAREN'''
@@ -303,13 +306,30 @@ def p_function_substring_2(p):
   '''function : SUBSTRING_FUNC LPAREN INT COMMA INT RPAREN'''
 
 def p_functionlist_join(p):
-	'''function : JOIN_FUNC LPAREN STRING RPAREN'''
+	'''functionlist : JOIN_FUNC LPAREN STRING RPAREN'''
 
 def p_functionlist_contains(p):
-	'''function : CONTAINS_FUNC LPAREN  typre RPAREN'''
+	'''functionlist : CONTAINS_FUNC LPAREN  typre RPAREN'''
 
 def p_functionlist_elementat(p):
-	'''function : ELEMENTAT_FUNC LPAREN INT RPAREN'''
+	'''functionlist : ELEMENTAT_FUNC LPAREN INT RPAREN'''
+
+def p_functionlist_add_int(p):
+	'''functionlist : ADD_FUNC LPAREN INT RPAREN'''
+
+def p_functionlist_add_string(p):
+	'''functionlist : ADD_FUNC LPAREN STRING RPAREN'''
+
+def p_functionlist_add_bool(p):
+	'''functionlist : ADD_FUNC LPAREN TRUE RPAREN
+              | ADD_FUNC LPAREN FALSE RPAREN'''
+
+def p_functionlist_shuffle(p):
+	'''functionlist : SHUFFLE_FUNC LPAREN RPAREN'''
+
+def p_functionlist_getrange(p):
+	'''functionlist : GETRANGE_FUNC LPAREN INT COMMA INT RPAREN'''
+
 
 ### SPRINT 3
 def p_operation(p):
