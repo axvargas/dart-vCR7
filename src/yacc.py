@@ -37,11 +37,7 @@ def p_colonStms(p):
               | functionCall'''
 
 def p_siuprint(p):
-  '''siuprint : PRINT LPAREN printable RPAREN'''
-
-def p_printable(p):
-  '''printable : STRING
-               | IDENT'''
+  '''siuprint : PRINT LPAREN typre RPAREN'''
 
 def p_ifstm(p):
   '''ifstm : ifelse LPAREN condition RPAREN LBRACE RBRACE
@@ -402,6 +398,7 @@ def p_returnStm(p):
 
 def p_functionCall(p):
   '''functionCall : IDENT LPAREN element RPAREN
+                  | IDENT LPAREN RPAREN
   '''
 parser = yacc()
 
@@ -440,7 +437,7 @@ Welcome to Dart CR7 v.0.1 REPL the programming language based on EL BICHO (SIIIU
 
 with open('./src/testing/data.dart') as data:
   data = data.read()
-  print(f'DATA:\n\n{data}\n\n')
+  #print(f'DATA:\n\n{data}\n\n')
   result = parser.parse(data)
   if not result:
     print('SIIUUU!')

@@ -101,4 +101,9 @@ if(num % 2 == 0){
 int sum(int a, int b){
   return 3 + 3;
 }
+void sum(int a, int b){
+  siu(3);
+}
 sum(2,4);
+perrit("josue");
+perrit();
