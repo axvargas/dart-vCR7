@@ -33,7 +33,8 @@ def p_colonStms(p):
               | operation
               | siuprint
               | assign
-              | implaceMod'''
+              | implaceMod
+              | functionCall'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN printable RPAREN'''
@@ -92,6 +93,7 @@ def p_preposition_not(p):
 def p_typre(p):
   '''typre : STRING
            | INT
+           | DOUBLE
            | TRUE
            | FALSE
            | FLOAT
@@ -140,11 +142,13 @@ def p_item(p):
 def p_key(p):
   '''key : STRING
          | INT
-         | FLOAT'''
+         | FLOAT
+         | DOUBLE'''
 
 def p_value(p):
   '''value : STRING
            | FLOAT
+           | DOUBLE
            | INT
            | FALSE
            | TRUE
@@ -216,11 +220,12 @@ def p_forstmt(p):
     '''
 
 def p_defineFunc(p):
-  '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE RBRACE
-          |  retornable IDENT LPAREN param RPAREN LBRACE body RBRACE 
-          | retornable IDENT LPAREN RPAREN LBRACE RBRACE
-          |  retornable IDENT LPAREN RPAREN LBRACE body RBRACE
+  '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE returnStm RBRACE
+          |  retornable IDENT LPAREN param RPAREN LBRACE body returnStm RBRACE 
+          | retornable IDENT LPAREN RPAREN LBRACE returnStm RBRACE
+          |  retornable IDENT LPAREN RPAREN LBRACE body returnStm RBRACE
   '''
+
 
 def p_param_single(p):
   '''param : typedata IDENT
@@ -344,6 +349,7 @@ def p_moreAritP(p):
 
 def p_arit(p):
   '''arit : FLOAT
+          | DOUBLE
           | INT
           | operation
   '''
@@ -377,7 +383,26 @@ def p_incrementA(p):
 def p_incrementB(p):
   ''' incrementB : MINUSMINUS IDENT
   '''
+def p_retornableValue(p):
+  '''retornableValue : INT
+                | DOUBLE
+                | FLOAT
+                | TRUE
+                | FALSE
+                | STRING
+                | list
+                | dictionary
+                | condition
+                | operation
+  '''
+def p_returnStm(p):
+  ''' returnStm : RETURN retornableValue SEMICOLON
+                | empty
+  '''
 
+def p_functionCall(p):
+  '''functionCall : IDENT LPAREN element RPAREN
+  '''
 parser = yacc()
 
 print(

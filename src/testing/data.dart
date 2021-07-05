@@ -96,3 +96,9 @@ if(num % 2 == 0){
 }else{
   siu("ODD");
 }
+
+
+int sum(int a, int b){
+  return 3 + 3;
+}
+sum(2,4);

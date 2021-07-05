@@ -42,7 +42,8 @@ tokens = [
     'RPAREN',
     'SEMICOLON',
     'STRING',
-    'VIR'
+    'VIR',
+    'DOUBLE'
 ]
 
 reserved_words = {
@@ -150,6 +151,7 @@ t_DOT = r'\.'
 #re_SIG = t_MINUS + r'?'
 t_INT = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
 t_FLOAT = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
+t_DOUBLE = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
 t_STRING = r'(\"|\')([^\\\n]|(\\.))*?(\"|\')'
 
 def t_IDENT(t):
