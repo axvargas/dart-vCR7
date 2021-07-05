@@ -9,29 +9,30 @@ def p_empty(p):
   pass
 
 def p_stms(p):
-  '''stms : colonStms
-             | colonStms stms'''
+  '''stms : noColonStms
+             | noColonStms stms'''
 
 def p_stms_col(p):
-  '''stms : noColonStms SEMICOLON
-             | noColonStms SEMICOLON stms'''
+  '''stms :  colonStms SEMICOLON
+             | colonStms SEMICOLON stms'''
 
-def p_colonStms(p):
-  '''colonStms : ifstm
+def p_noColonStms(p):
+  '''noColonStms : ifstm
                  | elstm
                  | whilestm
 		             | forstmt
-                 | func'''
+                 | defineFunc'''
 
-def p_noColonStms(p):
-  '''noColonStms : idmap
+def p_colonStms(p):
+  '''colonStms : idmap
               | stringstm
               | listfunc
               | dicfunc
               | stringfunc
               | listassign
               | operation
-              | siuprint'''
+              | siuprint
+              | assign'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN printable RPAREN'''
@@ -208,12 +209,8 @@ def p_moreelements(p):
     '''
 
 def p_forstmt(p):
-    '''forstmt : FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
-                | FOR LPAREN INT_TYPE assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE body RBRACE
-    '''
-
-def p_assign(p):
-    '''assign : IDENT EQ_V INT
+    '''forstmt : FOR LPAREN assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
+                | FOR LPAREN assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE body RBRACE
     '''
 
 def p_comparisonint(p):
@@ -239,8 +236,8 @@ def p_comparisonop(p):
                     | NE
     '''
 
-def p_func(p):
-  '''func : retornable IDENT LPAREN param RPAREN LBRACE RBRACE
+def p_defineFunc(p):
+  '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE RBRACE
           |  retornable IDENT LPAREN param RPAREN LBRACE body RBRACE 
           | retornable IDENT LPAREN RPAREN LBRACE RBRACE
           |  retornable IDENT LPAREN RPAREN LBRACE body RBRACE
@@ -378,8 +375,8 @@ def p_oparit(p):
             | TIMES
             | DIVISION
   '''
-def p_error():
-  ''' error: 
+def p_assign(p):
+  ''' assign : VAR IDENT EQ_V value
   '''
 
 parser = yacc()

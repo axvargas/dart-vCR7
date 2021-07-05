@@ -25,3 +25,55 @@ void example(bool block, int digit) {
 "cadena\n".trim();
 'dartlang'.substring(1);   
 'dartlang'.substring(1, 4);
+
+1 + 2; 
+3 - 4; 
+5 * 6; 
+1 / 2;
+
+if(true){
+  siu("hi");
+}
+if(a == 3){
+  siu("cool");
+}
+while(a <15){
+  siu("its ok");
+}
+
+
+[1,2,3,4,5,6].getRange(1,2); 
+[1,2,3,4,5,6].shuffle(); 
+[4,3,2].add(1);
+["Hello","world"].join(","); 
+[1,2,3,4].elementAt(2); 
+["hi","hola","salut"].contains("hi");
+
+"testString".codeUnitAt(5);
+"testString".compareTo("string");
+"testString".endsWith("test");
+"cadena\n".trim();
+"dartlang".substring(1);   
+"dartlang".substring(1,4);
+
+"salut".trim();
+"saludos".endsWith("udos");
+"Codificador".substring(4);
+"hola".substring(4,6); 
+"PERFECTO".codeUnitAt(5);
+"Ergo".compareTo("Ergo"); 
+
+{"key": "value"}.clear(); 
+{"key": "value"}.addAll({"key2": "value2"});
+{"key": "value"}.containsKey("key2"); 
+{"key": "value"}.containsValue(45);
+{"key": "value"}.remove("key"); 
+{"key": "value"}.toString(); 
+
+
+var i = 0;
+while( i <= 10){
+  siu(i);
+  i++;
+  ++i;
+}
