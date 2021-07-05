@@ -2,25 +2,29 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : colstms'''
+  '''body : stms'''
 
 def p_empty(p):
   '''empty :'''
   pass
 
-def p_nonColtypes(p):
-  '''nonColtypes : ifstm
+def p_stms(p):
+  '''stms : colonStms
+             | colonStms stms'''
+
+def p_stms_col(p):
+  '''stms : noColonStms SEMICOLON
+             | noColonStms SEMICOLON stms'''
+
+def p_colonStms(p):
+  '''colonStms : ifstm
                  | elstm
                  | whilestm
 		             | forstmt
                  | func'''
 
-def p_colstms_no(p):
-  '''colstms : nonColtypes
-             | nonColtypes colstms'''
-
-def p_coltypes(p):
-  '''coltypes : idmap
+def p_noColonStms(p):
+  '''noColonStms : idmap
               | stringstm
               | listfunc
               | dicfunc
@@ -28,10 +32,6 @@ def p_coltypes(p):
               | listassign
               | operation
               | siuprint'''
-
-def p_colstms(p):
-  '''colstms : coltypes SEMICOLON
-             | coltypes SEMICOLON colstms'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN printable RPAREN'''
@@ -377,6 +377,9 @@ def p_oparit(p):
             | MINUS
             | TIMES
             | DIVISION
+  '''
+def p_error():
+  ''' error: 
   '''
 
 parser = yacc()
