@@ -80,6 +80,7 @@ def p_operator(p):
               | GTE
               | LT
               | LTE
+              | MOD
   '''
 
 def p_preposition(p):

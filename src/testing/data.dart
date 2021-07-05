@@ -77,3 +77,22 @@ while( i <= 10){
   i++;
   ++i;
 }
+for( var i = 0; i <= 10; i++){
+  siu(i);
+}
+for( var i = 5; i == 10; i--){
+  siu(i);
+}
+for( var i = 7; i >= 10; ++i){
+  siu(i);
+}
+for( var i = 4; i <= 10; --i){
+  siu(i);
+}
+
+var num = 12;
+if(num % 2 == 0){
+  siu("EVEN");
+}else{
+  siu("ODD");
+}
