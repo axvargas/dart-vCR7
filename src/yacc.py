@@ -218,13 +218,12 @@ def p_forstmt(p):
 def p_defineFunc(p):
   '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE returnStm RBRACE
           |  retornable IDENT LPAREN param RPAREN LBRACE body returnStm RBRACE 
-          | retornable IDENT LPAREN RPAREN LBRACE returnStm RBRACE
-          |  retornable IDENT LPAREN RPAREN LBRACE body returnStm RBRACE
   '''
 
 
 def p_param_single(p):
   '''param : typedata IDENT
+            | empty
   '''
 
 def p_param(p):

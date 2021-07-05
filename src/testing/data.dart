@@ -107,3 +107,7 @@ void sum(int a, int b){
 sum(2,4);
 perrit("josue");
 perrit();
+
+void gg(){
+  
+}
