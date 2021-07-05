@@ -290,8 +290,8 @@ def p_functionmap_containsValue(p):
 def p_functionmap_remove(p):
   '''functionmap : REMOVE_FUNC LPAREN STRING RPAREN'''
 
-def p_function_tostring(p):
-  '''function : TOSTRING_FUNC LPAREN RPAREN'''
+def p_functionmap_tostring(p):
+  '''functionmap : TOSTRING_FUNC LPAREN RPAREN'''
 
 def p_functionstr_trim(p):
   '''functionstr : TRIM_FUNC LPAREN RPAREN'''
