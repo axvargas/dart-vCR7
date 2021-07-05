@@ -20,3 +20,9 @@ void example(bool block, int digit) {
   error == '' 'hii';;
 
 }
+"testString".codeUnitAt(5);
+"testString".compareTo("string");
+"testString".endsWith("test");
+"cadena\n".trim();
+'dartlang'.substring(1);   
+'dartlang'.substring(1, 4);
