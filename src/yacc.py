@@ -34,7 +34,11 @@ def p_colonStms(p):
               | siuprint
               | assign
               | implaceMod
-              | functionCall'''
+              | functionCall
+              | condition
+              | assignOp
+              | BREAK
+              | CONTINUE'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN typre RPAREN'''
@@ -357,6 +361,9 @@ def p_oparit(p):
   '''
 def p_assign(p):
   ''' assign : VAR IDENT EQ_V value
+              | DYNAMIC IDENT EQ_V value
+              | CONST IDENT EQ_V value
+              | IDENT EQ_V value 
   '''
 
 def p_implaceMod(p):
@@ -398,6 +405,17 @@ def p_returnStm(p):
 def p_functionCall(p):
   '''functionCall : IDENT LPAREN element RPAREN
                   | IDENT LPAREN RPAREN
+  '''
+def p_assignOp(p):
+  '''assignOp : IDENT assignOpOp INT
+                | IDENT assignOpOp FLOAT
+                | IDENT assignOpOp DOUBLE
+  '''
+def p_assignOpOp(p):
+  ''' assignOpOp : ASIGMINUS 
+                  | ASIGSUM
+                  | ASIGTIMES
+                  | ASIGDIV
   '''
 parser = yacc()
 

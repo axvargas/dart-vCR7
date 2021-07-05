@@ -99,6 +99,7 @@ if(num % 2 == 0){
 
 
 int sum(int a, int b){
+  break;
   return 3 + 3;
 }
 void sum(int a, int b){
@@ -109,5 +110,24 @@ perrit("josue");
 perrit();
 
 void gg(){
-  
 }
+true && true;
+true || true;
+!true;
+muster--;
+--muster;
+muster++;
+++muster;
+muster>=23;
+44 > muster;
+muster <= 33;
+muster < 44;
+muster != 44;
+muster % 2;
+muster /= 7;
+muster *= 2;
+muster -= 7;
+muster += 6;
+dynamic a = "jsoue";
+a = 3;
+siu(a);
