@@ -269,7 +269,7 @@ def p_more_params(p):
 #             | IDENT DOT functionlist'''
 
 def p_stringfunc(p):
-  '''stringfunc : STRING DOT function'''
+  '''stringfunc : STRING DOT functionstr'''
 
 def p_listfunc(p):
   '''listfunc : list DOT functionlist
@@ -293,17 +293,23 @@ def p_functionmap_remove(p):
 def p_function_tostring(p):
   '''function : TOSTRING_FUNC LPAREN RPAREN'''
 
-def p_function_trim(p):
-  '''function : TRIM_FUNC LPAREN RPAREN'''
+def p_functionstr_trim(p):
+  '''functionstr : TRIM_FUNC LPAREN RPAREN'''
 
-def p_function_endsWith(p):
-  '''function : ENDSWITH_FUNC LPAREN STRING RPAREN'''
+def p_functionstr_endsWith(p):
+  '''functionstr : ENDSWITH_FUNC LPAREN STRING RPAREN'''
 
-def p_function_substring(p):
-  '''function : SUBSTRING_FUNC LPAREN INT RPAREN'''
+def p_functionstr_substring(p):
+  '''functionstr : SUBSTRING_FUNC LPAREN INT RPAREN'''
 
-def p_function_substring_2(p):
-  '''function : SUBSTRING_FUNC LPAREN INT COMMA INT RPAREN'''
+def p_functionstr_substring_2(p):
+  '''functionstr : SUBSTRING_FUNC LPAREN INT COMMA INT RPAREN'''
+
+def p_functionstr_codeUnitAt(p):
+  '''functionstr : CODEUNITAT_FUNC LPAREN INT RPAREN'''
+
+def p_functionstr_compareTo(p):
+  '''functionstr : COMPARETO_FUNC LPAREN STRING RPAREN'''
 
 def p_functionlist_join(p):
 	'''functionlist : JOIN_FUNC LPAREN STRING RPAREN'''

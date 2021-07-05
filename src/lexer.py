@@ -95,6 +95,8 @@ reserved_words = {
     'trim': "TRIM_FUNC",
     'endsWith': "ENDSWITH_FUNC",
     'substring': "SUBSTRING_FUNC",
+    'codeUnitAt':"CODEUNITAT_FUNC",
+    'compareTo':"COMPARETO_FUNC",
     'join': "JOIN_FUNC",
     'contains': "CONTAINS_FUNC",
     'elementAt': "ELEMENTAT_FUNC",
