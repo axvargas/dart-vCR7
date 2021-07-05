@@ -2,7 +2,8 @@ from ply.yacc import yacc
 from lexer import tokens
 
 def p_body(p):
-  '''body : stms'''
+  '''body : stms 
+          | empty'''
 
 def p_empty(p):
   '''empty :'''
@@ -38,7 +39,9 @@ def p_colonStms(p):
               | condition
               | assignOp
               | BREAK
-              | CONTINUE'''
+              | CONTINUE
+              | declare
+              '''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN typre RPAREN'''
@@ -118,13 +121,8 @@ def p_tyvalue(p):
              | INT_TYPE
              | BOOLEAN
              | IDENT
-             | iterable
+             | LIST
              | tymap'''
-
-def p_iterable(p):
-  '''iterable : LIST
-              | SET
-              | STRING'''
 
 def p_string(p):
   '''stringstm : STRING_TYPE IDENT EQ_V STRING'''
@@ -153,9 +151,9 @@ def p_value(p):
            | FALSE
            | TRUE
            | IDENT
-           | iterable
-           | tymap
-           | listassigntype'''
+           | list
+           | dictionary
+           '''
 
 def p_listassign(p):
     '''listassign : VAR IDENT EQ_V list
@@ -175,17 +173,6 @@ def p_typedata(p):
                 | BOOLEAN
                 | STRING_TYPE
     '''
-
-def p_retornable(p):
-  '''retornable : INT_TYPE
-                | DOUBLE_TYPE
-                | BOOLEAN
-                | STRING_TYPE
-                | VOID
-                | LIST
-                | MAP
-                | SET
-  '''
 
 def p_listassign_list(p):
     '''listassign : LIST IDENT EQ_V list
@@ -220,10 +207,19 @@ def p_forstmt(p):
     '''
 
 def p_defineFunc(p):
-  '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE returnStm RBRACE
-          |  retornable IDENT LPAREN param RPAREN LBRACE body returnStm RBRACE 
+  '''defineFunc : retornable IDENT LPAREN param RPAREN LBRACE returnStm  RBRACE
+          |  retornable IDENT LPAREN param RPAREN LBRACE body returnStm RBRACE
   '''
-
+def p_retornable(p):
+  '''retornable : INT_TYPE
+                | DOUBLE_TYPE
+                | BOOLEAN
+                | STRING_TYPE
+                | VOID
+                | LIST
+                | MAP
+                | SET
+  '''
 
 def p_param_single(p):
   '''param : typedata IDENT
@@ -360,12 +356,24 @@ def p_oparit(p):
             | DIVISION
   '''
 def p_assign(p):
-  ''' assign : VAR IDENT EQ_V value
-              | DYNAMIC IDENT EQ_V value
-              | CONST IDENT EQ_V value
-              | IDENT EQ_V value 
+  ''' assign : VAR IDENT EQ_V retornableValue
+              | DYNAMIC IDENT EQ_V retornableValue
+              | CONST IDENT EQ_V retornableValue
+              | IDENT EQ_V retornableValue 
+              | STRING_TYPE IDENT EQ_V retornableValue 
+              | DOUBLE_TYPE IDENT EQ_V retornableValue 
+              | INT_TYPE IDENT EQ_V retornableValue 
+              | BOOLEAN IDENT EQ_V retornableValue 
   '''
-
+def p_declare(p):
+  ''' declare : VAR IDENT 
+              | DYNAMIC IDENT
+              | CONST IDENT 
+              | STRING_TYPE IDENT
+              | DOUBLE_TYPE IDENT
+              | INT_TYPE IDENT
+              | BOOLEAN  IDENT
+  '''
 def p_implaceMod(p):
   ''' implaceMod : decrementA
                   | decrementB
@@ -399,6 +407,7 @@ def p_retornableValue(p):
   '''
 def p_returnStm(p):
   ''' returnStm : RETURN retornableValue SEMICOLON
+                | RETURN SEMICOLON
                 | empty
   '''
 

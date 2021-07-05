@@ -57,6 +57,7 @@ reserved_words = {
     'break': 'BREAK',
     'dynamic': 'DYNAMIC',
     'double': 'DOUBLE_TYPE',
+    'float': 'FLOAT_TYPE',
     'else': 'ELSE',
     'enum': 'ENUM',
     'export': 'EXPORT',

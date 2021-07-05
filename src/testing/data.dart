@@ -97,20 +97,10 @@ if(num % 2 == 0){
   siu("ODD");
 }
 
-
-int sum(int a, int b){
-  break;
-  return 3 + 3;
-}
-void sum(int a, int b){
-  siu(3);
-}
 sum(2,4);
 perrit("josue");
 perrit();
 
-void gg(){
-}
 true && true;
 true || true;
 !true;
@@ -131,3 +121,32 @@ muster += 6;
 dynamic a = "jsoue";
 a = 3;
 siu(a);
+
+String g = "Josue";
+var best_players = ['CR7','Messi', 'Mbappe'];
+List best_players2 = ['CR7', 'Kanté', 'Mbappe'];
+List <int> numbers = [7, 10,7];
+
+var position = { 'MCO': 'Noboa', 'MD': 'Plata', 'MI': 'Ibarra'};
+
+bool is_mbp = true;
+double distance = 5.78;
+
+int goals = 5;
+int goals;
+
+void gg(){
+
+}
+void gg(int a){
+
+}
+void gg(){
+  return;
+}
+void gg(int a){
+  return;
+}
+void gg(int a, String a, int a){
+  return;
+}
