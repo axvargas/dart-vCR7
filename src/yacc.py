@@ -32,7 +32,8 @@ def p_colonStms(p):
               | listassign
               | operation
               | siuprint
-              | assign'''
+              | assign
+              | implaceMod'''
 
 def p_siuprint(p):
   '''siuprint : PRINT LPAREN printable RPAREN'''
@@ -209,31 +210,8 @@ def p_moreelements(p):
     '''
 
 def p_forstmt(p):
-    '''forstmt : FOR LPAREN assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE RBRACE
-                | FOR LPAREN assign SEMICOLON comparisonint SEMICOLON varincredecre RPAREN LBRACE body RBRACE
-    '''
-
-def p_comparisonint(p):
-    '''comparisonint : IDENT comparisonop INT
-    '''
-
-def p_varincredecre(p):
-    '''varincredecre : incredecre IDENT
-                     | IDENT incredecre
-    '''
-
-def p_incredecre(p):
-    '''incredecre : PLUSPLUS
-                  | MINUSMINUS
-    '''
-
-def p_comparisonop(p):
-    '''comparisonop : EQ
-                    | GT
-                    | GTE
-                    | LT
-                    | LTE
-                    | NE
+    '''forstmt : FOR LPAREN assign SEMICOLON condition SEMICOLON implaceMod RPAREN LBRACE RBRACE
+                | FOR LPAREN assign SEMICOLON condition SEMICOLON implaceMod RPAREN LBRACE body RBRACE
     '''
 
 def p_defineFunc(p):
@@ -377,6 +355,26 @@ def p_oparit(p):
   '''
 def p_assign(p):
   ''' assign : VAR IDENT EQ_V value
+  '''
+
+def p_implaceMod(p):
+  ''' implaceMod : decrementA
+                  | decrementB
+                  | incrementA
+                  | incrementB
+  '''
+
+def p_decrementA(p):
+  ''' decrementA : IDENT PLUSPLUS
+  '''
+def p_decrementB(p):
+  ''' decrementB : PLUSPLUS IDENT
+  '''
+def p_incrementA(p):
+  ''' incrementA : IDENT MINUSMINUS
+  '''
+def p_incrementB(p):
+  ''' incrementB : MINUSMINUS IDENT
   '''
 
 parser = yacc()
