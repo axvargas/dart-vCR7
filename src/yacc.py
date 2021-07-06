@@ -162,10 +162,6 @@ def p_listassign(p):
 def p_listassign_diamonds(p):
     '''listassign : LIST LT typedata GT IDENT EQ_V list
     '''
-  
-def p_listassigntype(p):
-  '''listassigntype : LIST LT typedata GT IDENT EQ_V list
-    '''
 
 def p_typedata(p):
     '''typedata : INT_TYPE
